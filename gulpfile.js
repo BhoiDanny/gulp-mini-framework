@@ -45,7 +45,7 @@ let basePath = {
 /*Extra Paths for additional actions*/
 let extraPaths = {
     zipSrc: basePath.dist + "/",
-    zipDest: basePath.root + app.slug + "/",
+    zipDest: basePath.root + app.name + "/",
     zipName: app.name + '-' + app.version + '.zip'
 }
 
@@ -375,12 +375,11 @@ gulp.task("watch:php", gulp.series("build-dev", (done) => {
 
 /*Zip Dist*/
 gulp.task("clean:zipPath", function(){
-   return del.sync(extraPaths.zipDest + "*/");
+   return del(extraPaths.zipDest + "*/");
 });
-gulp.task("zip-project", gulp.series("dist:build", "clean:zipPath", function(done){
-    gulp.src(extraPaths.zipSrc + "**")
+gulp.task("zip-project", gulp.series("dist:build", "clean:zipPath", function(){
+    return gulp.src(extraPaths.zipSrc + "**")
         .pipe(zip(extraPaths.zipName))
         .pipe(gulp.dest(extraPaths.zipDest));
-    done();
 }));
 
