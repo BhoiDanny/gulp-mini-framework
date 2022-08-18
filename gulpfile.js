@@ -38,6 +38,7 @@ let basePath = {
     src: './src/',
     dist: './dist/',
     dev: './dev/',
+    devServe: './dev',
     assets: './assets/'
 }
 
@@ -221,7 +222,7 @@ gulp.task("dist:build", gulp.series(
 /*Gulp Watch Tasks*/
 
 /*Gulp watch for Html*/
-gulp.task("watch", gulp.series("build-dev", (done) => {
+gulp.task("watch", gulp.series("build-dev", () => {
     browserSync.init({
         server: {
             baseDir: basePath.dev
@@ -276,13 +277,13 @@ gulp.task("watch", gulp.series("build-dev", (done) => {
             .pipe(browserSync.reload({ stream: true }));
 
     });
-
 }));
 
 /*Gulp Watch for PHP*/
 gulp.task("watch:php", gulp.series("build-dev", (done) => {
     connect.server({
-        base: basePath.dev,
+        base: basePath.devServe,
+        hostname: 'localhost',
         port: 3002,
         livereload: true,
         open: false,
@@ -290,14 +291,14 @@ gulp.task("watch:php", gulp.series("build-dev", (done) => {
         keepalive: true
     }, function(){
         browserSync({
-            baseDir: basePath.dev,
+            baseDir: basePath.devServe,
             proxy: "localhost:3002",
             open: true,
             notify: true,
             logPrefix: "Cypherios"
-        })
+        });
     });
-    gulp.watch(paths.js + '**/*', gulp.series("script", function(done){
+    gulp.watch(paths.js + '**/*', gulp.series("script", function(){
         gulp.src(basePath.assets + 'js/' + jsName)
             .pipe(gulp.dest(basePath.dev + 'assets/js/'))
             .pipe(browserSync.reload({ stream: true }));
