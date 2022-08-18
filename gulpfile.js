@@ -205,7 +205,7 @@ gulp.task("dist:copy-assets", gulp.series("copy-assets", (done)=>{
 
 /*Clean Dist Directory*/
 gulp.task("dist:clean", (done)=>{
-    del.deleteSync(basePath.dist + '**', { force: true });
+    del.sync(basePath.dist + '*/');
     done();
 });
 
