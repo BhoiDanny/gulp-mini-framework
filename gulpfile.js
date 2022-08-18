@@ -149,8 +149,8 @@ gulp.task("copy-vendor", (done)=>{
 
 /*Copy Assets*/
 gulp.task("copy-assets", (done)=>{
-    gulp.src(basePath.src + 'assets/**/*', { allowEmpty: true })
-        .pipe(gulp.dest(basePath.dev + 'assets/'));
+    gulp.src(basePath.root + 'assets*/**/*', { allowEmpty: true })
+        .pipe(gulp.dest(basePath.dev));
     done();
 });
 
