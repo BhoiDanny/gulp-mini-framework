@@ -2,6 +2,7 @@
   "name": "gulp-frame",
   "version": "1.0.0",
   "description": "Mini Gulp Framework",
+  "slug": "gulp-frame-core",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,9 +11,26 @@
     "gulp",
     "framework"
   ],
-  "author": "Daniel Botchway",
+  "author": "Daniel Botchway <brownssmith899@gmail.com> (http//sanny.tech)",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "browser-sync": "^2.27.10",
+    "del": "^6.1.1",
+    "friendly-errors-webpack-plugin": "^2.0.0-beta.2",
+    "fs-extra": "^10.1.0",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-connect-php": "^1.0.3",
+    "gulp-htmlclean": "^2.7.22",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-inject-partials": "^1.0.5",
+    "gulp-minify-inline": "^1.1.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-uglifycss": "^1.1.0",
+    "gulp-zip": "^5.1.0",
+    "pipe-error-stop": "^0.0.11",
+    "vinyl-named": "^1.1.0",
+    "webpack-stream": "^4.0.3"
   }
 }
