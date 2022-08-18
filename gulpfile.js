@@ -4,7 +4,7 @@ let fs = require('fs-extra');
 let app = JSON.parse(fs.readFileSync('./package.json'));
 
 const gulp = require('gulp'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-sass')(require('sass')),
     browserSync = require('browser-sync'),
     connect = require('gulp-connect-php'),
     del = require('del'),

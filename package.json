@@ -30,6 +30,7 @@
     "gulp-uglifycss": "^1.1.0",
     "gulp-zip": "^5.1.0",
     "pipe-error-stop": "^0.0.11",
+    "sass": "^1.54.4",
     "vinyl-named": "^1.1.0",
     "webpack-stream": "^4.0.3"
   }
