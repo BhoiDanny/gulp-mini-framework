@@ -1,11 +1,16 @@
 {
-  "name": "gulp-frame",
+  "name": "gulp-mini-framework",
   "version": "1.0.0",
   "description": "Mini Gulp Framework",
   "slug": "gulp-frame-core",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp",
+    "dist": "gulp dist:build",
+    "watch": "gulp watch",
+    "watch-php": "gulp watch-php",
+    "build-dev": "gulp build-dev",
+    "zip-dist": "gulp zip-project"
   },
   "keywords": [
     "gulp",

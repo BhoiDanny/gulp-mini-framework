@@ -53,12 +53,12 @@ let extraPaths = {
 /*Project Paths*/
 let paths = {
     src: {
-        html: basePath.src + '**/*.html',
-        php: basePath.src + '**/*.php',
+        html: basePath.src + '*.html',
+        php: basePath.src + '*.php',
     },
     dev: {
-        html: basePath.dev + '**/*.html',
-        php: basePath.dev + '**/*.php',
+        html: basePath.dev + '*.html',
+        php: basePath.dev + '*.php',
     },
     js: {
         src: basePath.src + 'js/',
@@ -88,16 +88,22 @@ let sassOptions = {
 /*Grab all html and php files in src and place it in dev directory*/
 gulp.task("views", (done)=>{
     gulp.src(paths.src.html,{ allowEmpty: true })
-        .pipe(injectPartials())
+        .pipe(injectPartials({
+            removeTags: true,
+            ignoreError: true
+        }))
         .pipe(gulp.dest(basePath.dev));
     gulp.src(paths.src.php, { allowEmpty: true })
-        .pipe(injectPartials())
+        .pipe(injectPartials({
+            removeTags: true,
+            ignoreError: true
+        }))
         .pipe(gulp.dest(basePath.dev));
     done();
 });
 
 gulp.task("views-watch", gulp.series("views", ()=>{
-    return browserSync.reload();
+    return browserSync.reload({ stream: true});
 }));
 
 
@@ -125,13 +131,12 @@ gulp.task("script", (done)=>{
 });
 
 /*Image Compress*/
-gulp.task("image-min", (done)=>{
-    gulp.src(paths.img.src + "**/*" , { allowEmpty: true })
+gulp.task("image-min", ()=>{
+    return gulp.src(paths.img.src + "**/*" , { allowEmpty: true })
         .pipe(imagemin({
             silent: true
         }))
         .pipe(gulp.dest(paths.img.dest));
-    done();
 });
 
 /*Fonts Copy*/
@@ -143,16 +148,16 @@ gulp.task("copy-fonts", (done)=>{
 
 /*Copy Vendor if any*/
 gulp.task("copy-vendor", (done)=>{
-    gulp.src(basePath.src + 'vendor/**/*', { allowEmpty: true })
+    return gulp.src(basePath.src + 'vendor/**/*', { allowEmpty: true })
         .pipe(gulp.dest(basePath.dev + 'vendor/'));
-    done();
+    //done();
 });
 
 /*Copy Assets*/
 gulp.task("copy-assets", (done)=>{
-    gulp.src(basePath.root + 'assets*/**/*', { allowEmpty: true })
-        .pipe(gulp.dest(basePath.dev));
-    done();
+    return gulp.src(basePath.root + 'assets/**/*', { allowEmpty: true })
+        .pipe(gulp.dest(basePath.dev + 'assets/'));
+    //done();
 });
 
 /*Clean Dev*/
@@ -168,14 +173,14 @@ gulp.task("default",gulp.series(
     "script",
     "image-min",
     "copy-fonts",
-    "copy-vendor",
-    "copy-assets"
+    "copy-vendor"
 ));
 
 /*Build Dev Version*/
 gulp.task("build-dev", gulp.series(
     "clean-dev",
     "default",
+    "copy:assets"
 ));
 
 
@@ -192,15 +197,24 @@ gulp.task("dist:views", gulp.series("views", (done) =>{
 
 /*Dist Copy vendor*/
 gulp.task("dist:copy-vendor", gulp.series("copy-vendor", (done)=>{
-    gulp.src(basePath.dev + 'vendor/**/*', { allowEmpty: true })
+    return gulp.src(basePath.dev + 'vendor/**/*', { allowEmpty: true })
         .pipe(gulp.dest(basePath.dist + 'vendor/'));
-    done();
+    //done();
 }));
 
 /*Dist Copy assets*/
 gulp.task("dist:copy-assets", gulp.series("copy-assets", (done)=>{
-    gulp.src(basePath.dev + 'assets/**/*', { allowEmpty: true })
+    return gulp.src(basePath.dev + 'assets/**/*', { allowEmpty: true })
         .pipe(gulp.dest(basePath.dist + 'assets/'));
+    //done();
+}));
+
+/*Copy js and min to dist*/
+gulp.task("dist:script", gulp.series("script", (done)=>{
+    del.sync(basePath.dist + 'assets/js/*');
+    gulp.src(paths.js.dest + "*.js", { allowEmpty: true })
+        .pipe(uglify())
+        .pipe(gulp.dest(basePath.dist + 'assets/js/'));
     done();
 }));
 
@@ -216,7 +230,8 @@ gulp.task("dist:build", gulp.series(
     "default",
     "dist:views",
     "dist:copy-vendor",
-    "dist:copy-assets"
+    "dist:copy-assets",
+    "dist:script"
 ));
 
 /*Gulp Watch Tasks*/
@@ -228,24 +243,27 @@ gulp.task("watch", gulp.series("build-dev", () => {
             baseDir: basePath.dev
         }
     });
-    gulp.watch(paths.js + '**/*', gulp.series("script", function(done){
-      gulp.src(basePath.assets + 'js/' + jsName)
+    gulp.watch(basePath.src + '*/*', gulp.series('views-watch'));
+    gulp.watch(paths.js.src + '**/*', gulp.series("script", function(){
+      return gulp.src(basePath.assets + 'js/' + jsName)
           .pipe(gulp.dest(basePath.dev + 'assets/js/'))
           .pipe(browserSync.reload({ stream: true }));
-        done();
+        //done();
     }));
-    gulp.watch(paths.style.src + '**/*', gulp.series("sass", function(done){
-        gulp.src(basePath.assets + 'css/' + cssName)
+    gulp.watch(paths.style.src + '**/*', gulp.series("sass", function(){
+        return gulp.src(basePath.assets + 'css/' + cssName)
             .pipe(gulp.dest(basePath.dev + 'assets/css/'))
             .pipe(browserSync.reload({ stream: true }));
-        done();
+        //();
     }));
-    gulp.watch(paths.img.src, gulp.series("image-min", function (done) {
-       gulp.src(basePath.assets + 'img/**/*', { allowEmpty: true })
+
+    gulp.watch(paths.img.src, gulp.series("image-min", function () {
+       return gulp.src(basePath.assets + 'img/**/*', { allowEmpty: true })
            .pipe(gulp.dest(basePath.dev + "/assets/img/"))
            .pipe(browserSync.reload({ stream: true }));
-         done();
+         //done();
     }));
+
     gulp.watch(paths.fonts.src + '**/*', gulp.series("copy-fonts", function (done) {
         gulp.src(basePath.assets + 'fonts/**/*', { allowEmpty: true })
             .pipe(gulp.dest(basePath.dev + "/assets/fonts/"))
@@ -255,7 +273,7 @@ gulp.task("watch", gulp.series("build-dev", () => {
 
     /*Place File in Dev Folder on Src Change Detection*/
     gulp.watch(basePath.src + "*.html").on("change", function(file){
-       let fileName = file.path.split("/").pop();
+       let fileName = file.split('\\').pop().split('/').pop();
          return gulp.src(basePath.src + fileName)
             .pipe(injectPartials({
                  removeTags: true,
@@ -266,24 +284,24 @@ gulp.task("watch", gulp.series("build-dev", () => {
 
     });
 
-    gulp.watch(basePath.src + "**/*.html").on("change", function(file){
-        let fileName = file.path.split("/").pop();
-        return gulp.src(basePath.src + fileName)
+    //You can add another folder for detection by placing your folder name in the placeholder and uncommenting line//
+    /*gulp.watch(basePath.src + "{folder-name}/*.html").on("change", function(file){
+        let fileName = file.split('\\').pop().split('/').pop();
+        return gulp.src(basePath.src + "{folder-name}/" + fileName)
             .pipe(injectPartials({
-                removeTags: true,
-                ignoreError: true
-            }))
-            .pipe(gulp.dest(basePath.dev))
+                 removeTags: true,
+                 ignoreError: true
+             }))
+            .pipe(gulp.dest(basePath.dev + '{folder-name}/'))
             .pipe(browserSync.reload({ stream: true }));
-
-    });
+    });*/
 }));
 
 /*Gulp Watch for PHP*/
 gulp.task("watch:php", gulp.series("build-dev", (done) => {
     connect.server({
         base: basePath.devServe,
-        hostname: 'localhost',
+        hostname: '127.0.0.1',//can be changed to your local ip address
         port: 3002,
         livereload: true,
         open: false,
@@ -295,9 +313,15 @@ gulp.task("watch:php", gulp.series("build-dev", (done) => {
             proxy: "localhost:3002",
             open: true,
             notify: true,
-            logPrefix: "Cypherios"
+            logPrefix: "Cypherios",
+            livereload: true
         });
     });
+
+    gulp.watch(basePath.src + '*/*').on("change", gulp.series("views", function(){
+        return browserSync.reload();
+    }));
+
     gulp.watch(paths.js + '**/*', gulp.series("script", function(){
         gulp.src(basePath.assets + 'js/' + jsName)
             .pipe(gulp.dest(basePath.dev + 'assets/js/'))
@@ -325,7 +349,7 @@ gulp.task("watch:php", gulp.series("build-dev", (done) => {
 
     /*Place File in Dev Folder on Src Change Detection*/
     gulp.watch(basePath.src + "*.html").on("change", function(file){
-        let fileName = file.path.split("/").pop();
+        let fileName = file.split('\\').pop().split('/').pop();
         return gulp.src(basePath.src + fileName)
             .pipe(injectPartials({
                 removeTags: true,
@@ -336,20 +360,21 @@ gulp.task("watch:php", gulp.series("build-dev", (done) => {
 
     });
 
-    gulp.watch(basePath.src + "**/*.html").on("change", function(file){
-        let fileName = file.path.split("/").pop();
-        return gulp.src(basePath.src + fileName)
+    //You can add another folder for detection by placing your folder name in the placeholder and uncommenting line//
+    /*gulp.watch(basePath.src + "{folder-name}/*.html").on("change", function(file){
+        let fileName = file.split('\\').pop().split('/').pop();
+        return gulp.src(basePath.src + "{folder-name}/" + fileName)
             .pipe(injectPartials({
                 removeTags: true,
                 ignoreError: true
             }))
-            .pipe(gulp.dest(basePath.dev))
+            .pipe(gulp.dest(basePath.dev + '{folder-name}/'))
             .pipe(browserSync.reload({ stream: true }));
+    });*/
 
-    });
 
     gulp.watch(basePath.src + "*.php").on("change", function(file){
-        let fileName = file.path.split("/").pop();
+        let fileName = file.split('\\').pop().split('/').pop();
         return gulp.src(basePath.src + fileName)
             .pipe(injectPartials({
                 removeTags: true,
@@ -360,17 +385,18 @@ gulp.task("watch:php", gulp.series("build-dev", (done) => {
 
     });
 
-    gulp.watch(basePath.src + "**/*.php").on("change", function(file){
-        let fileName = file.path.split("/").pop();
-        return gulp.src(basePath.src + fileName)
+    //You can add another folder for detection by placing your folder name in the placeholder and uncommenting line//
+    /*gulp.watch(basePath.src + "{folder-name}/*.php").on("change", function(file){
+        let fileName = file.split('\\').pop().split('/').pop();
+        return gulp.src(basePath.src + "{folder-name}/" + fileName)
             .pipe(injectPartials({
                 removeTags: true,
                 ignoreError: true
             }))
-            .pipe(gulp.dest(basePath.dev))
+            .pipe(gulp.dest(basePath.dev + '{folder-name}/'))
             .pipe(browserSync.reload({ stream: true }));
+    });*/
 
-    });
 
 }));
 
@@ -378,7 +404,7 @@ gulp.task("watch:php", gulp.series("build-dev", (done) => {
 gulp.task("clean:zipPath", function(){
    return del(extraPaths.zipDest + "*/");
 });
-gulp.task("zip-project", gulp.series("dist:build", "clean:zipPath", function(){
+gulp.task("zip-project", gulp.series("dist:build", ["clean:zipPath"], function(){
     return gulp.src(extraPaths.zipSrc + "**")
         .pipe(zip(extraPaths.zipName))
         .pipe(gulp.dest(extraPaths.zipDest));
