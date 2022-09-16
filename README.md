@@ -1,10 +1,10 @@
 # Gulp-mini-framework
+
 Gulp mini Framework is a mini-built system that helps developers perform monotonous operations in their projects: Laravel Developers, Framework Developers and many more.
 
 ### Starting
 
 This Project is focused on helping and obliging developers: and programmers to speed up their workflow and also helping them to structure their file structure in an organized way. It allows you to minify large files and optimize large images and videos in their Project. Moreover, it quickly speeds up development by allowing you to easily deploy projects through FTP: web (HTML) projects.
-
 
 #### Installation
 
@@ -21,6 +21,7 @@ Type 'npm run test' to start the project
 ```bash
 $ npm test
 ```
+
 OR
 
 Type 'gulp' to start the project
@@ -38,6 +39,7 @@ Run the following commands to perform the following tasks:
 ```bash
 $ npm run test
 ```
+
 OR
 
 ```bash
@@ -49,6 +51,7 @@ $ gulp
 ```bash
 $ npm run watch
 ```
+
 OR
 
 ```bash
@@ -60,6 +63,7 @@ $ gulp watch
 ```bash
 $ npm run watch-php
 ```
+
 OR
 
 ```bash
@@ -71,6 +75,7 @@ $ gulp watch-php
 ```bash
 $ npm run build-dev
 ```
+
 OR
 
 ```bash
@@ -82,6 +87,7 @@ $ gulp build-dev
 ```bash
 $ npm run dist
 ```
+
 OR
 
 ```bash
@@ -93,6 +99,7 @@ $ gulp dist:build
 ```bash
 $ npm run zip-dist
 ```
+
 OR
 
 ```bash
@@ -130,7 +137,6 @@ Contributions are welcome! Please submit a pull request.
 - Added README.md
 - Added .gitignore
 
-
 #### TODO
 
 - Add more features
@@ -152,7 +158,6 @@ If you have any problem or suggestion please open an issue [here](https://github
 If you find this project useful, you can buy me a cup of coffee :coffee:.
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/BhoiDanny)
-
 
 #### Social
 
@@ -181,15 +186,14 @@ If you find this project useful, you can buy me a cup of coffee :coffee:.
 
 [![GitHub release](https://img.shields.io/github/release/BhoiDanny/gulp-mini-framework.svg)]()
 
-
 ##### Screenshots
 
-![Screenshot 1](./screenshot/1.png)
+![Screenshot 1](https://github.com/BhoiDanny/gulp-mini-framework/blob/main/screenshot/1.png)
 
-![Screenshot 2](./screenshot/2.png)
+![Screenshot 2](https://github.com/BhoiDanny/gulp-mini-framework/blob/main/screenshot/2.png)
 
-![Screenshot 2](./screenshot/3.png)
+![Screenshot 2](https://github.com/BhoiDanny/gulp-mini-framework/blob/main/screenshot/3.png)
 
-![Screenshot 2](./screenshot/4.png)
+![Screenshot 2](https://github.com/BhoiDanny/gulp-mini-framework/blob/main/screenshot/4.png)
 
-![Screenshot 2](./screenshot/5.png)
+![Screenshot 2](https://github.com/BhoiDanny/gulp-mini-framework/blob/main/screenshot/5.png)
