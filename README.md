@@ -4,7 +4,7 @@ Gulp mini Framework is a mini-built system that helps developers perform monoton
 
 ### Starting
 
-This Project is focused on helping and obliging developers: and programmers to speed up their workflow and also helping them to structure their file structure in an organized way. It allows you to minify large files and optimize large images and videos in their Project. Moreover, it quickly speeds up development by allowing you to easily deploy projects through FTP: web (HTML) projects.
+This Project is focused on helping and obliging developers: and programmers to speed up their workflow and also helping them to structure their files in an organized way. It allows you to minify large files and optimize large images and videos in their Project. Moreover, it quickly speeds up development by allowing you to easily deploy projects through FTP: web (HTML) projects.
 
 #### Installation
 
@@ -157,7 +157,7 @@ If you have any problem or suggestion please open an issue [here](https://github
 
 If you find this project useful, you can buy me a cup of coffee :coffee:.
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/BhoiDanny)
+[![Donate](https://img.shields.io/badge/Send-Wave%20%20+233554130056-green.svg)](tel:+233554130056)
 
 #### Social
 
