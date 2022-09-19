@@ -14,6 +14,8 @@ $ npm install
 
 #### Usage
 
+Place all your necessary files in the src directory.
+
 Type the following command in your terminal to start the project:
 
 Type 'npm run test' to start the project
