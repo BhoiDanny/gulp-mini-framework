@@ -131,6 +131,10 @@ Contributions are welcome! Please submit a pull request.
 
 #### Changelog
 
+##### 1.0.6
+
+Js fix
+
 ##### 1.0.5
 
 Fixed Errors
