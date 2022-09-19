@@ -180,7 +180,7 @@ gulp.task("default",gulp.series(
 gulp.task("build-dev", gulp.series(
     "clean-dev",
     "default",
-    "copy:assets"
+    "copy-assets"
 ));
 
 
@@ -298,7 +298,7 @@ gulp.task("watch", gulp.series("build-dev", () => {
 }));
 
 /*Gulp Watch for PHP*/
-gulp.task("watch:php", gulp.series("build-dev", (done) => {
+gulp.task("watch-php", gulp.series("build-dev", (done) => {
     connect.server({
         base: basePath.devServe,
         hostname: '127.0.0.1',//can be changed to your local ip address

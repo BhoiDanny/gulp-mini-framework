@@ -131,6 +131,18 @@ Contributions are welcome! Please submit a pull request.
 
 #### Changelog
 
+##### 1.0.5
+
+Fixed Errors
+
+##### 1.0.2
+
+Code Minification
+
+##### 1.0.1
+
+Patches
+
 ##### 1.0.0
 
 - Initial release
