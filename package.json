@@ -1,6 +1,6 @@
 {
   "name": "gulp-mini-framework",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Mini Gulp Framework",
   "slug": "gulp-frame-core",
   "main": "gulpfile.js",
@@ -18,7 +18,7 @@
   ],
   "author": "Daniel Botchway <brownssmith899@gmail.com> (http//sanny.tech)",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "browser-sync": "^2.27.10",
     "del": "^6.1.1",
     "friendly-errors-webpack-plugin": "^2.0.0-beta.2",
