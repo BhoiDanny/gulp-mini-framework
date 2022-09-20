@@ -125,11 +125,17 @@ $ gulp zip-project
 
 Contributions are welcome! Please submit a pull request.
 
+[![Twitter](https://img.shields.io/badge/Github-Gulp_Mini_Framework-blue.svg)](http://github.com/BhoiDanny/gulp-mini-framework/)
+
 #### Credits
 
 [Daniel Botchway](http://gihub.com/BhoiDanny)
 
 #### Changelog
+
+##### 1.0.7
+
+Minor changes
 
 ##### 1.0.6
 
@@ -167,9 +173,11 @@ Patches
 - Add more tests
 - Add more comments
 
+#### Discussions
+
 #### Support
 
-If you have any problem or suggestion please open an issue [here](https://github.com/BhoiDanny/gulp-mini-framework/issues/4).
+If you have any problem or suggestion please open an issue [here](https://github.com/BhoiDanny/gulp-mini-framework/issues) or you can write it up in our discussion [here](https://github.com/BhoiDanny/gulp-mini-framework/discussions/8)
 
 #### Donate
 
@@ -189,16 +197,16 @@ If you find this project useful, you can buy me a cup of coffee :coffee:.
 
 #### Website
 
-[![Website](https://img.shields.io/badge/Website-%40BhoiDanny-blue.svg)](https://bhoidanny.github.io)
+[![Website](https://img.shields.io/badge/Website-%40BhoiDanny-blue.svg)](http://github.com/BhoiDanny)
 
 #### Status
 
-[![Build Status](https://travis-ci.org/BhoiDanny/gulp-mini-framework.svg?branch=master)](https://github.com/BhoiDanny/gulp-mini-framework)
-[![GitHub issues](https://img.shields.io/github/issues/BhoiDanny/gulp-mini-framework.svg)](https://github.com/BhoiDanny/gulp-mini-framework/issues/4)
+[![Build Status](https://travis-ci.org/BhoiDanny/gulp-mini-framework.svg?branch=main)](https://github.com/BhoiDanny/gulp-mini-framework)
+[![GitHub issues](https://img.shields.io/github/issues/BhoiDanny/gulp-mini-framework.svg)](https://github.com/BhoiDanny/gulp-mini-framework/issues)
 
-#### Downloads
+<!-- #### Downloads
 
-[![GitHub All Releases](https://img.shields.io/github/downloads/BhoiDanny/gulp-mini-framework/total.svg)]()
+[![GitHub All Releases](https://img.shields.io/github/downloads/BhoiDanny/gulp-mini-framework/total.svg)]() -->
 
 #### Version
 
